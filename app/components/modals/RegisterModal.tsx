@@ -8,6 +8,7 @@ import { FcGoogle } from 'react-icons/fc'
 import { FieldValues, SubmitHandler, useForm} from 'react-hook-form'
 
 import useRegisterModal from "@/app/hooks/useRegisterModal"
+import useLoginModal from "@/app/hooks/useLoginModal"
 import Modal from "./Modal"
 import Heading from "../Heading"
 import Input from "../UI/inputs/Input"
@@ -16,6 +17,7 @@ import toast from "react-hot-toast"
 
 const RegisterModal = () => {
   const registerModal = useRegisterModal()
+  const loginModal = useLoginModal()
   const [isLoading, setIsLoading] = useState(false)
   
   const {register, handleSubmit, formState: {errors}} = useForm<FieldValues>({
@@ -40,6 +42,11 @@ const RegisterModal = () => {
         setIsLoading(false)
       })
   }
+
+  const toggleModals = useCallback(() => {
+    registerModal.onClose()
+    loginModal.onOpen()
+  }, [loginModal, registerModal])
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
@@ -83,7 +90,7 @@ const RegisterModal = () => {
         <div className="text-neutral-500 text-center mt-4 font-light"
         >
             <p>Already have an account?
-            <span onClick={() => {}} className="text-neutral-800cursor-pointer hover:underline"> Log in</span>
+            <span onClick={toggleModals} className="text-neutral-800cursor-pointer hover:underline"> Log in</span>
             </p>
         </div>
     </div>

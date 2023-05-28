@@ -51,6 +51,11 @@ const LoginModal = () => {
     })
   }
 
+  const toggleModals = useCallback(() => {
+    loginModal.onClose()
+    registerModal.onOpen()
+  }, [loginModal, registerModal])
+
   const bodyContent = (
     <div className="flex flex-col gap-4">
         <Heading
@@ -84,8 +89,8 @@ const LoginModal = () => {
         <Button outline label="Continue with Github" icon={AiFillGithub} onClick={() => signIn('github')}/>
         <div className="text-neutral-500 text-center mt-4 font-light"
         >
-            <p>Already have an account?
-            <span onClick={() => {}} className="text-neutral-800cursor-pointer hover:underline"> Log in</span>
+            <p>First time using Airbnb?
+            <span onClick={toggleModals} className="text-neutral-800cursor-pointer hover:underline"> Create an Account</span>
             </p>
         </div>
     </div>
