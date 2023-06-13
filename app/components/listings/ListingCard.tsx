@@ -7,9 +7,8 @@ import { format } from 'date-fns';
 
 import useCountries from "@/app/hooks/useCountries";
 import { 
-  safeListing,
-//   SafeListing, 
-//   SafeReservation, 
+  SafeListing, 
+  SafeReservation, 
   SafeUser 
 } from "@/app/types";
 import Button from "../UI/button/Button";
@@ -17,8 +16,8 @@ import { Listing, Reservation } from "@prisma/client";
 import HeartButton from "../HeartButton";
 
 interface ListingCardProps {
-  data: safeListing;
-  reservation?: Reservation;
+  data: SafeListing;
+  reservation?: SafeReservation;
   onAction?: (id: string) => void;
   disabled?: boolean;
   actionLabel?: string;
